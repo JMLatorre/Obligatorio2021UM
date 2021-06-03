@@ -1,12 +1,12 @@
-import TADs.ArbolBCastMember.ABBCastMember;
-import TADs.List.Lista;
-import TADs.List.ListaEnlazada;
+import TADs.ArbolB.ABB;
+import TADs.LinkedList.Lista;
+import TADs.LinkedList.ListaEnlazada;
 
 import java.util.Scanner;
 public class Programa {
 
     public static void main(String[] args) {
-        ABBCastMember castMemberABB=new ABBCastMember();
+        ABB castMemberABB=new ABB();
         Lista listaMovie=new ListaEnlazada();
         Lista listaDirectores=new ListaEnlazada();
         int[] actorAnio=new int[120];
