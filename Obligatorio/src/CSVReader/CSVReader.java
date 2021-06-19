@@ -1,28 +1,20 @@
 package CSVReader;
 
 import java.io.*;
+import java.util.Iterator;
 
-public class CSVReader {
+public class CSVReader implements Iterable<String[]> {
 
+    private final File file;
 
+    public CSVReader(File file){
+        this.file = file;
+    }
 
-    public static void main(String[] args) {
-        String path = "C:\\Users\\Usuario\\OneDrive\\Desktop\\Obligatorio Programación\\Prueba.csv";
+    @Override
+    public Iterator<String[]> iterator() {
 
-        File file = new File(path);
-        String line = "";
-
-        try {
-            BufferedReader bfReader = new BufferedReader(new FileReader(file));
-            while ((line = bfReader.readLine()) != null){
-                String[] dataList = line.split(",");
-                System.out.println(dataList[0]);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return new CSVReaderIterator(this.file);
     }
 }
 
