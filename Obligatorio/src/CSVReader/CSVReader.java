@@ -1,24 +1,28 @@
 package CSVReader;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.*;
 
 public class CSVReader {
 
+
+
     public static void main(String[] args) {
-        String path = "C:\\Users\\Usuario\\OneDrive\\Desktop\\Obligatorio Programación\\IMDb movies.csv";
+        String path = "C:\\Users\\Usuario\\OneDrive\\Desktop\\Obligatorio Programación\\Prueba.csv";
 
         File file = new File(path);
+        String line = "";
 
         try {
-            Scanner scannedFile = new Scanner(file);
-            while (scannedFile.hasNext()){
-                String data = scannedFile.next();
-                System.out.println(data);
+            BufferedReader bfReader = new BufferedReader(new FileReader(file));
+            while ((line = bfReader.readLine()) != null){
+                String[] dataList = line.split(",");
+                System.out.println(dataList[0]);
             }
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
+
