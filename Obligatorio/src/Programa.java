@@ -1,7 +1,12 @@
+import CSVReader.CSVReader;
+import Clases.CastMember;
 import TADs.ArbolB.ABB;
+import TADs.ClosedHash.ClosedHash;
 import TADs.LinkedList.Lista;
 import TADs.LinkedList.ListaEnlazada;
 
+import java.io.File;
+import java.util.Iterator;
 import java.util.Scanner;
 public class Programa {
 
@@ -25,6 +30,46 @@ public class Programa {
             numero_opcion = input.nextInt();
             switch(numero_opcion) {
                 case 1:
+
+
+                    CSVReader reader = new CSVReader(new File("C:\\Users\\Usuario\\OneDrive\\Desktop\\Obligatorio Programacion\\IMDb names.csv"));
+                    Iterator<String[]> readerIterator = reader.iterator();
+
+                    ClosedHash cast_member_hash = new ClosedHash(315000, 1);
+
+
+                    boolean header = true;
+
+                    while (readerIterator.hasNext()) {
+
+                        if(header){
+                            String[] headers = readerIterator.next();
+                            header = false;
+                        }
+                        else {
+                            String[] data = readerIterator.next();
+                            CastMember newCastMember = new CastMember();
+                            newCastMember.setImdbNameId(data[0]);
+                            newCastMember.setName(data[1]);
+                            newCastMember.setBirthName(data[2]);
+                            newCastMember.setHeight(data[3]);
+                            newCastMember.setBio(data[4]);
+                            newCastMember.setBirthDate(data[5]);
+                            newCastMember.setBirthCity(data[6]);
+                            newCastMember.setBirthState(data[7]);
+                            newCastMember.setDeathDate(data[8]);
+                            newCastMember.setDeathState(data[9]);
+                            newCastMember.setDeathCountry(data[10]);
+                            newCastMember.setDeathCity(data[11]);
+                            newCastMember.setSpousesString(data[12]);
+                            newCastMember.setSpouses(data[13]);
+                            newCastMember.setDivorces(data[14]);
+                            newCastMember.setSpousesWithChildren(data[15]);
+
+                            cast_member_hash.put(Integer.parseInt(newCastMember.getImdbNameId().substring(2)), newCastMember);
+                        }
+                    }
+
                     System.out.println("Carga de datos exitosa, tiempo de ejecución de la carga:"); // ?
 
                     break;

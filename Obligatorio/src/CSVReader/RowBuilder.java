@@ -39,14 +39,15 @@ public class RowBuilder {
             return false;
         }
 
-        if (c == '"') {
+        if (c == ',') {
             record_buffer.add(value_buffer.toString());
             this.value_buffer.setLength(0);
             return false;
         }
 
         if (c == '\n') {
-
+            record_buffer.add(value_buffer.toString());
+            this.value_buffer.setLength(0);
             return true;
         }
 

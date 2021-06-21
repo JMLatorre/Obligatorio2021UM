@@ -35,24 +35,20 @@ public class ClosedHash<K, V> implements MyHash<K, V> {
 
         if (hashTable[hashIndex] == null){
             hashTable[hashIndex] = newEntry;
-            hashLoad++;
         }
         else{
             if (hashTable[hashIndex].isDeleted() == true) {
                 hashTable[hashIndex].setKey(key);
                 hashTable[hashIndex].setValue(value);
-                hashLoad++;
             }
             else{
                 for (int i = hashIndex + 1; i <= hashTableSize; i++){
                     if (hashTable[i] == null) {
                         hashTable[i] = newEntry;
-                        hashLoad++;
                     }
                     else if (hashTable[i].isDeleted() == true) {
                         hashTable[i].setKey(key);
                         hashTable[i].setValue(value);
-                        hashLoad++;
                     }
                     else{
                         rehasing();
@@ -61,6 +57,7 @@ public class ClosedHash<K, V> implements MyHash<K, V> {
                 }
             }
         }
+        hashLoad++;
     }
 
     public void rehasing(){
