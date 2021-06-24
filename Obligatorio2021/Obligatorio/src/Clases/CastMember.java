@@ -7,27 +7,27 @@ public class CastMember {
     private String imdbNameId;
     private String name;
     private String birthName;
-    private String height;
+    private int height;
     private String bio;
-    private String birthDate;
+    private Date birthDate;
     private String birthState;
     private String birthCity;
-    private String deathDate;
+    private Date deathDate;
     private String deathState;
     private String deathCountry;
     private String deathCity;
     private String spousesString;
-    private String spouses;
-    private String divorces;
-    private String spousesWithChildren;
-    private String children;
+    private int spouses;
+    private int divorces;
+    private int spousesWithChildren;
+    private int children;
 
     public CastMember(){
 
     }
 
     //Lista
-    public CastMember(String imdbNameId, String name, String birthName, String height, String bio, String birthDate, String birthState, String birthCity, String deathDate, String deathState, String deathCountry, String deathCity, String spousesString, String spouses, String divorces, String spousesWithChildren, String children) {
+    public CastMember(String imdbNameId, String name, String birthName, int height, String bio, Date birthDate, String birthCity, Date deathDate, String deathState, String deathCountry, String deathCity, String spousesString, int spouses, int divorces, int spousesWithChildren, int children) {
         this.imdbNameId = imdbNameId;
         this.name = name;
         this.birthName = birthName;
@@ -71,11 +71,11 @@ public class CastMember {
         this.birthName = birthName;
     }
 
-    public String getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
@@ -87,11 +87,11 @@ public class CastMember {
         this.bio = bio;
     }
 
-    public String getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -111,11 +111,11 @@ public class CastMember {
         this.birthCity = birthCity;
     }
 
-    public String getDeathDate() {
+    public Date getDeathDate() {
         return deathDate;
     }
 
-    public void setDeathDate(String deathDate) {
+    public void setDeathDate(Date deathDate) {
         this.deathDate = deathDate;
     }
 
@@ -151,35 +151,35 @@ public class CastMember {
         this.spousesString = spousesString;
     }
 
-    public String getSpouses() {
+    public int getSpouses() {
         return spouses;
     }
 
-    public void setSpouses(String spouses) {
+    public void setSpouses(int spouses) {
         this.spouses = spouses;
     }
 
-    public String getDivorces() {
+    public int getDivorces() {
         return divorces;
     }
 
-    public void setDivorces(String divorces) {
+    public void setDivorces(int divorces) {
         this.divorces = divorces;
     }
 
-    public String getSpousesWithChildren() {
+    public int getSpousesWithChildren() {
         return spousesWithChildren;
     }
 
-    public void setSpousesWithChildren(String spousesWithChildren) {
+    public void setSpousesWithChildren(int spousesWithChildren) {
         this.spousesWithChildren = spousesWithChildren;
     }
 
-    public String getChildren() {
+    public int getChildren() {
         return children;
     }
 
-    public void setChildren(String children) {
+    public void setChildren(int children) {
         this.children = children;
     }
 }

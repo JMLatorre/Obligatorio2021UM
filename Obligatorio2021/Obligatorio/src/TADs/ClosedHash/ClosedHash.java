@@ -22,8 +22,8 @@ public class ClosedHash<K, V> implements MyHash<K, V> {
 
     private int getHash(K key) {
 
-        int intKey = (int) key;
-        int hashIndex = intKey % hashTableSize; //Ver funcion hash a usar.
+
+        int hashIndex = key.hashCode() % hashTableSize; //Ver funcion hash a usar.
         return hashIndex;
     }
 
@@ -52,7 +52,7 @@ public class ClosedHash<K, V> implements MyHash<K, V> {
                     }
                     else{
                         rehasing();
-                        put(key, value);
+                        //put(key, value);
                     }
                 }
             }

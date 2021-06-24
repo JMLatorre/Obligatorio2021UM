@@ -6,6 +6,10 @@ import TADs.LinkedList.Lista;
 import TADs.LinkedList.ListaEnlazada;
 
 import java.io.File;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Scanner;
 public class Programa {
@@ -32,7 +36,7 @@ public class Programa {
                 case 1:
                     long tiempo_inicio = System.nanoTime();
 
-                    CSVReader reader = new CSVReader(new File("C:\\Users\\Usuario\\OneDrive\\Desktop\\Obligatorio Programacion\\IMDb names.csv"));
+                    CSVReader reader = new CSVReader(new File("C:\\Users\\Juan Manuel\\Desktop\\IMDb names.csv"));
                     Iterator<String[]> readerIterator = reader.iterator();
 
                     ClosedHash cast_member_hash = new ClosedHash(315000, 1);
@@ -42,31 +46,50 @@ public class Programa {
 
                     while (readerIterator.hasNext()) {
 
+                        String[] headers = readerIterator.next();
                         if(header){
-                            String[] headers = readerIterator.next();
                             header = false;
                         }
                         else {
-                            String[] data = readerIterator.next();
+
                             CastMember newCastMember = new CastMember();
-                            newCastMember.setImdbNameId(data[0]);
-                            newCastMember.setName(data[1]);
-                            newCastMember.setBirthName(data[2]);
-                            newCastMember.setHeight(data[3]);
-                            newCastMember.setBio(data[4]);
-                            newCastMember.setBirthDate(data[5]);
-                            newCastMember.setBirthCity(data[6]);
-                            newCastMember.setBirthState(data[7]);
-                            newCastMember.setDeathDate(data[8]);
-                            newCastMember.setDeathState(data[9]);
-                            newCastMember.setDeathCountry(data[10]);
-                            newCastMember.setDeathCity(data[11]);
-                            newCastMember.setSpousesString(data[12]);
-                            newCastMember.setSpouses(data[13]);
-                            newCastMember.setDivorces(data[14]);
-                            newCastMember.setSpousesWithChildren(data[15]);
+                            newCastMember.setImdbNameId(headers[0]);
+                            newCastMember.setName(headers[1]);
+                            newCastMember.setBirthName(headers[2]);
+                            try {
+                                newCastMember.setHeight(Integer.parseInt(headers[3]));
+                            }catch(NumberFormatException ex)
+                            {
+
+                            }
+                            newCastMember.setBio(headers[4]);
+                            SimpleDateFormat formato=new SimpleDateFormat("yyyy/MM/dd");
+                            try {
+                            if( headers[5]!="")
+                                newCastMember.setBirthDate(formato.parse(headers[5].toString()));
+                            } catch (ParseException e) {
+                              //e.printStackTrace();
+                            }
+                            newCastMember.setBirthCity(headers[6]);
+                            newCastMember.setBirthState(headers[7]);
+                            try{
+                            if(headers[8]!="")
+                                newCastMember.setDeathDate(formato.parse(headers[8]));
+                        } catch (ParseException e) {
+                           // e.printStackTrace();
+                        }
+                            newCastMember.setDeathState(headers[9]);
+                            newCastMember.setDeathCountry(headers[10]);
+                            newCastMember.setDeathCity(headers[11]);
+                            newCastMember.setSpousesString(headers[12]);
+                            newCastMember.setSpouses(Integer.parseInt(headers[13]));
+                            newCastMember.setDivorces(Integer.parseInt(headers[14]));
+                            newCastMember.setSpousesWithChildren(Integer.parseInt(headers[15]));
 
                             cast_member_hash.put(Integer.parseInt(newCastMember.getImdbNameId().substring(2)), newCastMember);
+
+
+
                         }
                     }
                     long ejecucion =  (System.nanoTime() - tiempo_inicio)/1000000;
